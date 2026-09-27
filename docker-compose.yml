@@ -1,0 +1,21 @@
+services:
+  btle2opcua:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: btle2opcua:latest
+    container_name: btle2opcua
+    restart: unless-stopped
+    # Host networking is required for direct Bluetooth adapter and D-Bus access on Linux hosts
+    network_mode: "host"
+    volumes:
+      # Mount host D-Bus socket for Bleak/BlueZ communication
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket:ro
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - OPCUA_ENDPOINT=opc.tcp://0.0.0.0:4840/btle2opcua/server/
+      - OPCUA_NAMESPACE=http://btle2opcua/
+      - DEVICE_TTL_SECONDS=300
+      - LOG_LEVEL=INFO
