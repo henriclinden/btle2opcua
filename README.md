@@ -20,6 +20,19 @@ Discovered ThermoBeacon temperature and humidity sensors are automatically decod
 - `RSSI` (Int16, dBm)
 - `LastSeen` (DateTime)
 
+### Inkbird IBS-TH2
+
+Inkbird IBS-TH2 sensors advertising with the local name `sps` are decoded under
+`Objects/BTLE/Inkbird/ByAddress/<address>` and aliased under
+`Objects/BTLE/Inkbird/ByName/<name>` with these variables:
+- `Temperature` (Double, °C)
+- `Humidity` (Double, % RH)
+- `BatteryPercent` (Byte, %)
+- `Address` (String)
+- `Name` (String)
+- `RSSI` (Int16, dBm)
+- `LastSeen` (DateTime)
+
 ## Setup
 
 ```powershell
